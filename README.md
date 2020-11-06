@@ -1,3 +1,6 @@
+## NOTE:
+This repo is based on https://github.com/bstiel/dockerize-celery-django-app
+
 # How to Dockerize a Celery App With Django And RabbitMQ
 
 This projects contains the source code examples accompanying the blog post:

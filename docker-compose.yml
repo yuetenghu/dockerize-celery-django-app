@@ -20,7 +20,7 @@ services:
     image: *app
     restart: "no"
     env_file: *envfile
-    command: ["celery", "worker", "--app=worker.worker.app", "--concurrency=1", "--hostname=worker@%h", "--loglevel=INFO"]
+    command: ["celery", "--app=worker.worker.app", "worker", "--concurrency=1", "--hostname=worker@%h", "--loglevel=INFO"]
     volumes:
       - ./app:/app
     depends_on:
@@ -36,7 +36,8 @@ services:
       - broker
 
   broker:
-    image: rabbitmq:3
+    image: rabbitmq:3.8.9-management
     env_file: *envfile
     ports:
       - 5672:5672
+      - 15672:15672
