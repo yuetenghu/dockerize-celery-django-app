@@ -1,3 +1,9 @@
+## Manually added
+# VS Code
+settings.json
+
+env.env
+
 app/data/
 !test.env
 
@@ -122,5 +128,3 @@ node_modules/
 # Bower
 bower_components/
 
-# VS Code
-settings.json

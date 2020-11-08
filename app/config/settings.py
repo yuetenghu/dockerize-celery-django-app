@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')myo10vwg%@b1+xf11z6#x-66mpi^9k!ilwry8v^4-8so$3d8s'
+SECRET_KEY = ')myo10vwg%@b1+sdfsg3#x-sfgds^9k!ilwry8v^4-8so$3d8s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -81,7 +81,16 @@ CELERY = {
 
 
 DATA_PATH = '/app/data'
+DIST_MATRIX_PATH = "/app/data/dist_matrix"
+ROUTE_PATH = "/app/data/route"
 
+GOOGLE_MAPS = {
+    "GOOGLE_MAPS_API_URL": "https://maps.googleapis.com/maps/api/distancematrix/json?origins=<origin-lat>,<origin-lng>&destinations=<dest-lat>,<dest-lng>&key=" + os.environ["GOOGLE_MAPS_API_KEY"]
+}
+
+C2H = {
+    "C2H_UPDATE_ROUTE_API": os.environ["C2H_UPDATE_ROUTE_API"]
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases

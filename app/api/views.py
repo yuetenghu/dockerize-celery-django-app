@@ -1,4 +1,5 @@
 import logging
+logging.basicConfig(filename='/app/log/views.log', level=logging.DEBUG)
 import os
 import json
 
@@ -6,11 +7,16 @@ from django.conf import settings
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
-from worker.tasks import fetch_data_from_quandl
+from worker.tasks import fetch_data_from_quandl, optimise_route
 
 
 logger = logging.getLogger(__name__)
 
+@api_view(["POST"])
+def route_optimise(request, format=None):
+    logger.info(f"route_optimise(): Received request.data = {request.data}")
+    optimise_route.s(trip=request.data).delay()
+    return Response('123', status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'POST'])
 def index(request, format=None):
