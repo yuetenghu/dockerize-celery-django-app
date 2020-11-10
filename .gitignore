@@ -2,7 +2,7 @@
 # VS Code
 settings.json
 
-env.env
+.env.*
 
 app/data/
 !test.env
