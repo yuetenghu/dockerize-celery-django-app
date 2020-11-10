@@ -10,10 +10,11 @@ services:
       - .env.development
     ports:
       - "8000:8000"
-    volumes:
-      - ./app:/app
+    # volumes:
+    #   - ./app:/app
     depends_on:
       - broker
+    restart: always
 
   worker:
     build: .
@@ -21,10 +22,11 @@ services:
     restart: "no"
     env_file: *envfile
     command: ["celery", "--app=worker.worker.app", "worker", "--concurrency=1", "--hostname=worker@%h", "--loglevel=INFO"]
-    volumes:
-      - ./app:/app
+    # volumes:
+    #   - ./app:/app
     depends_on:
       - broker
+    restart: always
     
   flower:
     image: zoomeranalytics/flower:0.9.1-4.0.2
@@ -34,6 +36,7 @@ services:
       - "5555:5555"
     depends_on:
       - broker
+    restart: always
 
   broker:
     image: rabbitmq:3.8.9-management
@@ -41,3 +44,4 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
+    restart: always
